@@ -20,6 +20,10 @@
     <div class="container" id="container">
         <p class="discription">Having a hard time choosing a name for your baby? Look no further, just choose your baby's gender and a name will randomly be generated for you.</p>
         <h4>Pick the gender:</h4>
+        <label class="buttonContainer radio-inline">Gender Unknown
+            <input type="radio" name="optradio" value="unknown" checked="true">
+            <span class="checkmark"></span>
+        </label>
         <label class="buttonContainer radio-inline">Boy
             <input type="radio" name="optradio" value="male">
             <span class="checkmark"></span>
@@ -29,21 +33,8 @@
             <span class="checkmark"></span>
         </label>
 
-        <h4>Pick the region:</h4>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Regions
-  <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" href="#">United States</a></li>
-                <li role="presentation"><a role="menuitem" href="#">Argentina</a></li>
-                <li role="presentation"><a role="menuitem" href="#">Denmark</a></li>
-                <li role="presentation"><a role="menuitem" href="#">Egypt</a></li>
-                <li role="presentation"><a role="menuitem" href="#">France</a></li>
-                <li role="presentation"><a role="menuitem" href="#">India</a></li>
-                <li role="presentation"><a role="menuitem" href="#">Nigeria</a></li>
-                <li role="presentation"><a role="menuitem" href="#">Switzerland</a></li>
-            </ul>
-        </div>
+
+
 
         <input id="nameButton" type="submit" value="SUBMIT">
 
@@ -61,8 +52,12 @@
             $("#nameButton").click(function(e) {
                 var gender = $('input[name=optradio]:checked').val();
                 console.log("Gender = " + gender);
-                var myurl = "http://uinames.com/api/?gender=" + gender;
-                myurl += "&region=united%20states";
+                var myurl = "";
+                if (gender == "unknown"){
+                    myurl = "http://uinames.com/api/";
+                } else {
+                    myurl = "http://uinames.com/api/?gender=" + gender;
+                }
                 console.log(myurl);
                 $.ajax({
                     url: myurl,
@@ -71,8 +66,7 @@
                     success: function(parsed_json) {
                         console.log(parsed_json);
                         var first = parsed_json['name'];
-                        var last = parsed_json['surname'];
-                        var everything = first + ' ' + last;
+                        var everything = first;
                         $("#name").html(everything);
                     }
                 });
