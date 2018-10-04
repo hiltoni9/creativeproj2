@@ -1,0 +1,25 @@
+.title{
+    min-width:400px;
+    width:65%;
+    text-align:right;
+    float:right;
+    padding-top:10%;
+    padding-right:3%;
+    font-family: 'Playfair Display', serif;
+    font-size:12vw;
+    line-height: 80%;
+    height:100%;
+}
+.container{
+    min-width:400px;
+    width:35%;
+    text-align:left;
+    float:left;
+    padding:4%;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.container .discription{
+    font-size:1.25em;
+    
+}
